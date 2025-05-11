@@ -27,28 +27,34 @@ namespace ConsApp_Col01
         }
 
         [Flags]
-        enum TerrainType : byte
+        enum Terrain : byte
         {
-            Tundra = 0,       // 0000 0000
-            Desert = 1,       // 0000 0001
-            Plains = 2,       // 0000 0010
-            Praire = 3,       // 0000 0011
-            Grassland = 4,    // 0000 0100
-            Savannah = 5,     // 0000 0101
-            Marsh = 6,        // 0000 0110
-            Swamp = 7,        // 0000 0111
+            tTundra = 0,    // 0000 0000,    // 00 Tundra
 
-            Forest = 8,       // 0000 1000
+            tDesert = 0x01,    // 0000 0001,    // 01 Desert
+            tPlains = 0x02,    // 0000 0010,    // 02 Plains
+            tPraire = 0x03,    // 0000 0011,    // 03 Praire
+            tGrass  = 0x04,    // 0000 0100,    // 04 Grassland
+            tSavan  = 0x05,    // 0000 0101,    // 05 Savannah
+            tMarsh  = 0x06,    // 0000 0110,    // 06 Marsh
+            tSwamp  = 0x07,    // 0000 0111,    // 07 Swamp
 
-            Hill = 32,        // 0010 0000
-            Mountain = 160,   // 1010 0000
-            River = 64,       // 0100 0000
-            MajorRiver = 192, // 1100 0000
+            tWaterL = 0x10,    // 0001 0000,    // 10 WaterLand Такая клетка не встречается
 
-            Arctic = 24,      // 0001 1000
-            Ocean = 25,       // 0001 1001
-            SeaLane = 26      // 0001 1010
+            tArctic = 0x18,    // 0001 1000,    // 18 Arctic
+            tOcean  = 0x19,    // 0001 1001,    // 19 Ocean
+            tSeaLin = 0x1A,    // 0001 1010,    // 1A Sea Lane
 
+            tForest = 0x08,    // 0000 1000,    // 08 Boreal Forest (Tundra)
+            tHill   = 0x20,    // 0010 0000,    // 20 Hill + Tundra
+            tRiver  = 0x40,    // 0100 0000,    // 40 River + Tundra
+
+            //          tOceanR = 01011001,    // 59 River + Ocean
+
+            tMount  = 0xA0,    // 1010 0000,    // A0 Mountain + Tundra
+            tRiverM = 0xC0     // 1100 0000     // C0 Major River + Tundra
+
+            //          tOceanMR =11011001     // D9 Major River + Ocean
         }
 
 
