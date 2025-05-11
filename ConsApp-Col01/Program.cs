@@ -27,9 +27,9 @@ namespace ConsApp_Col01
         }
 
         [Flags]
-        enum Terrain : byte
+        enum TerrainType : byte
         {
-            tTundra = 0,    // 0000 0000,    // 00 Tundra
+            tTundra = 0x00,    // 0000 0000,    // 00 Tundra
 
             tDesert = 0x01,    // 0000 0001,    // 01 Desert
             tPlains = 0x02,    // 0000 0010,    // 02 Plains
@@ -43,18 +43,18 @@ namespace ConsApp_Col01
 
             tArctic = 0x18,    // 0001 1000,    // 18 Arctic
             tOcean  = 0x19,    // 0001 1001,    // 19 Ocean
-            tSeaLin = 0x1A,    // 0001 1010,    // 1A Sea Lane
+            tSeaLan = 0x1A,    // 0001 1010,    // 1A Sea Lane
 
             tForest = 0x08,    // 0000 1000,    // 08 Boreal Forest (Tundra)
             tHill   = 0x20,    // 0010 0000,    // 20 Hill + Tundra
             tRiver  = 0x40,    // 0100 0000,    // 40 River + Tundra
 
-            //          tOceanR = 01011001,    // 59 River + Ocean
+            //           tOceanR = 01011001,    // 59 River + Ocean
 
             tMount  = 0xA0,    // 1010 0000,    // A0 Mountain + Tundra
-            tRiverM = 0xC0     // 1100 0000     // C0 Major River + Tundra
+            tMRiver = 0xC0     // 1100 0000     // C0 Major River + Tundra
 
-            //          tOceanMR =11011001     // D9 Major River + Ocean
+            //           tOceanMR =11011001     // D9 Major River + Ocean
         }
 
 
