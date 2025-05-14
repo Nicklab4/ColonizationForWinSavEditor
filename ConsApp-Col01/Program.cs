@@ -135,6 +135,8 @@ namespace ConsApp_Col01
             Console.WriteLine("Город-T - " + cityCoordOnTerrainMap.ToString("X"));
             Console.WriteLine("Город-S - " + cityCoordOnInfraMap.ToString("X"));
 
+
+            // перенести город колонистов
             if (cityType == 1)
             {
                 coordX2 = MapCoord(true);
@@ -169,6 +171,7 @@ namespace ConsApp_Col01
             }
 
 
+            // перенести поселение индейцев
             if (cityType == 2)
             {
                 coordX2 = MapCoord(true);
@@ -238,6 +241,8 @@ namespace ConsApp_Col01
                 }
             }
 
+
+            // редактировать местность
             if (cityType == 3)
             {
 
@@ -247,10 +252,96 @@ namespace ConsApp_Col01
                     (((TerrainInfr)savFileArr[cityCoordOnInfraMap] & TerrainInfr.FRoad) == TerrainInfr.FRoad ? "Yes" : "No"));
                 Console.WriteLine("{0,3} - {1}", savFileArr[cityCoordOnInfraMap],
                     ((TerrainInfr)savFileArr[cityCoordOnInfraMap]).ToString());
-                if (((TerrainInfr)savFileArr[cityCoordOnInfraMap] & TerrainInfr.FRoad) != TerrainInfr.FRoad)
-                    savFileArr[cityCoordOnInfraMap] += (byte)TerrainInfr.FRoad;
-                Console.WriteLine(savFileArr[cityCoordOnInfraMap]);
+
+                //    tWaterL = 0x10,    // 0001 0000,    // 10 WaterLand Такая клетка не встречается
+                //    tArctic = 0x18,    // 0001 1000,    // 18 Arctic
+                //    tOcean = 0x19,     // 0001 1001,    // 19 Ocean
+                //    tSeaLan = 0x1A,    // 0001 1010,    // 1A Sea Lane
+                //    tOceanR = 0x59     // 0101 1001,    // 59 River + Ocean
+                //    tOceanMR = 0xD9    // 1101 1001     // D9 Major River + Ocean
+
+                if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tWaterL) == TerrainType.tWaterL)
+                {
+                    if (savFileArr[cityCoordOnTerrainMap] == 0x18)
+                        Console.WriteLine("Arctic");
+
+                    else if (savFileArr[cityCoordOnTerrainMap] == 0x1A)
+                        Console.WriteLine("Sea Lane");
+
+                    else if (savFileArr[cityCoordOnTerrainMap] == 0x19)
+                        Console.WriteLine("Ocean");
+
+                    else if(savFileArr[cityCoordOnTerrainMap] == 0x59)
+                        Console.WriteLine("Ocean + River");
+
+                    else if(savFileArr[cityCoordOnTerrainMap] == 0xD9)
+                        Console.WriteLine("Ocean + Major River");
+
+                }
+
+            //tTundra = 0x00,    // 0000 0000,    // 00 Tundra
+            //tDesert = 0x01,    // 0000 0001,    // 01 Desert
+            //tPlains = 0x02,    // 0000 0010,    // 02 Plains
+            //tPraire = 0x03,    // 0000 0011,    // 03 Praire
+            //tGrass = 0x04,     // 0000 0100,    // 04 Grassland
+            //tSavan = 0x05,     // 0000 0101,    // 05 Savannah
+            //tMarsh = 0x06,     // 0000 0110,    // 06 Marsh
+            //tSwamp = 0x07,     // 0000 0111,    // 07 Swamp
+            //tForest = 0x08,    // 0000 1000,    // 08 Forest
+            //tHill = 0x20,      // 0010 0000,    // 20 Hill + Tundra
+            //tRiver = 0x40,     // 0100 0000,    // 40 River + Tundra
+            //tMount = 0xA0,     // 1010 0000,    // A0 Mountain + Tundra
+            //tMRiver = 0xC0     // 1100 0000     // C0 Major River + Tundra
+                else
+                {
+                    if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tSwamp) == TerrainType.tSwamp)
+                        Console.Write("Swamp");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tMarsh) == TerrainType.tMarsh)
+                        Console.Write("Marsh");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tSavan) == TerrainType.tSavan)
+                        Console.Write("Savannah");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tGrass) == TerrainType.tGrass)
+                        Console.Write("Grassland");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tPraire) == TerrainType.tPraire)
+                        Console.Write("Praire");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tPlains) == TerrainType.tPlains)
+                        Console.Write("Plains");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tDesert) == TerrainType.tDesert)
+                        Console.Write("Desert");
+
+                    else 
+                        Console.Write("Tundra");
+
+
+                    if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tMRiver) == TerrainType.tMRiver)
+                        Console.Write(" + Major River");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tMount) == TerrainType.tMount)
+                        Console.Write(" + Mount");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tRiver) == TerrainType.tRiver)
+                        Console.Write(" + River");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tHill) == TerrainType.tHill)
+                        Console.Write(" + Hill");
+
+                    else if (((TerrainType)savFileArr[cityCoordOnTerrainMap] & TerrainType.tForest) == TerrainType.tForest)
+                        Console.Write(" + Forest");
+                }
+
+
+                Console.WriteLine();
+                //if (((TerrainInfr)savFileArr[cityCoordOnInfraMap] & TerrainInfr.FRoad) != TerrainInfr.FRoad)
+                //    savFileArr[cityCoordOnInfraMap] += (byte)TerrainInfr.FRoad;
+                //Console.WriteLine(savFileArr[cityCoordOnInfraMap]);
             }
+
 
             // Сохранение файла
             using (FileStream fs = new FileStream(path + "2", FileMode.OpenOrCreate))
