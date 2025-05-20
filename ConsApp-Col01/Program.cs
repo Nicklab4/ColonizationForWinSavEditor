@@ -135,9 +135,9 @@ namespace ConsApp_Col01
             long cityCoordOnInfraMap = cityCoordOnTerrainMap + 0x1050;
             long cityCoordOnXMap = cityCoordOnInfraMap + 0x1050;
 
-            Console.WriteLine("Город-T - " + cityCoordOnTerrainMap.ToString("X"));
-            Console.WriteLine("Город-S - " + cityCoordOnInfraMap.ToString("X"));
-            Console.WriteLine("Город-X - " + cityCoordOnXMap.ToString("X"));
+            Console.WriteLine("Координата на карте рельефа  - - - - " + cityCoordOnTerrainMap.ToString("X"));
+            Console.WriteLine("Координата на карте инфраструктуры - " + cityCoordOnInfraMap.ToString("X"));
+            Console.WriteLine("Координата на карте вляния - - - - - " + cityCoordOnXMap.ToString("X"));
 
 
             // перенести город колонистов
